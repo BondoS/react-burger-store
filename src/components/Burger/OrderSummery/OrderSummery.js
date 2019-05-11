@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Aux from '../../../hoc/Auxiliry';
+import Aux from '../../../hoc/Auxiliry/Auxiliry';
+import Button from '../../UI/Button/Button'
 
-const orderSummery = (props) => {
-  const ingredientSummery = Object.keys(props.ingredients)
-    .map(igKey => {
-      return (
-        <li key={igKey}>
-          <span style={{ textTransform: 'capitalize' }}>
-            {igKey}
-          </span>
-          : {props.ingredients[igKey]}
-        </li>
-      )
-    })
+class OrderSummery extends Component {
+  // This could be a functional component, doesn't have to be a class 
+  componentWillUpdate () {
+    console.log('[OrderSummery] willUpdate');
+  }
 
+  render() {
+    const ingredientSummery = Object.keys(this.props.ingredients)
+      .map(igKey => {
+        return (
+          <li key={igKey}>
+            <span style={{ textTransform: 'capitalize' }}>
+              {igKey}
+            </span>
+            : {this.props.ingredients[igKey]}
+          </li>
+        )
+      })
 
-  return (
-    <Aux>
-      <h3>Your Order</h3>
-      <p>A delicious burger with the following ingredients: </p>
-      <ul>
-        {ingredientSummery}
-      </ul>
-      <p>Continue to Checkout</p>
-      <button>CANCEL</button>
-      <button>CONTINUE</button>
-    </Aux>
-  )
+    return (
+      <Aux>
+        <h3>Your Order</h3>
+        <p>A delicious burger with the following ingredients: </p>
+        <ul>
+          {ingredientSummery}
+        </ul>
+        <p><strong>Total Price: {this.props.price}</strong></p>
+        <p>Continue to Checkout</p>
+        <Button btnType="Danger" clicked={this.props.purchaseCancelled}>CANCEL</Button>
+        <Button btnType="Success" clicked={this.props.purchaseContinued}>CONTINUE</Button>
+      </Aux>
+    )
+  }
+
 };
 
-export default orderSummery;
+export default OrderSummery;
