@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Aux from '../../../hoc/Auxiliry/Auxiliry';
 import Button from '../../UI/Button/Button'
 
-class OrderSummery extends Component {
+class OrderSummary extends Component {
   // This could be a functional component, doesn't have to be a class 
   componentWillUpdate () {
     console.log('[OrderSummery] willUpdate');
@@ -39,4 +39,4 @@ class OrderSummery extends Component {
 
 };
 
-export default OrderSummery;
+export default OrderSummary;
